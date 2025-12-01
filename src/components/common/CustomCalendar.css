@@ -1,0 +1,52 @@
+.custom-calendar-container {
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: 'Figtree', sans-serif;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08);
+}
+
+.fc .fc-toolbar-title {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 1.1rem;
+}
+
+.fc .fc-button {
+  background: transparent;
+  border: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.fc-button-primary{
+    background-color: var(--primary);
+    color: white;
+}
+
+.fc .fc-button:hover {
+  color: white;
+    background-color: var(--primary);
+
+}
+
+.fc .fc-daygrid-day-number {
+  font-size: 0.9rem;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: var(--primary);
+  color: white;
+}
+
+.fc .fc-daygrid-day.fc-day-selected {
+  background-color: var(--primary);
+  color: var(--text-white);
+  border-radius: 50%;
+}
+
+.fc .fc-day-sat, .fc .fc-day-sun {
+  color: var(--text-muted);
+}
