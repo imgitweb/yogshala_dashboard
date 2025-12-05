@@ -19,9 +19,9 @@ function App() {
   return (
     <Routes>
 
-      {/* <Route path="/" element={<Navigate to="/auth/login-with-token" replace />} /> */}
+      <Route path="/" element={<Navigate to="/auth/login-with-token" replace />} />
 
-      <Route path="/" element={<AdminLoginPage/>} />
+      {/* <Route path="/" element={<AdminLoginPage/>} /> */}
 
       <Route path="/auth/login-with-token" element={<LoginWithToken />} />
 

@@ -170,13 +170,16 @@ const Sidebar = ({ role, sidebarOpen, setSidebarOpen, collapsed, setCollapsed })
         {/* Logo */}
         <div className="h-20 flex items-center justify-between px-5 border-b border-gray-200 bg-white/50 backdrop-blur-md">
           {!collapsed && (
-            <motion.span
+            <motion.img
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-xl font-bold text-gray-800 tracking-wide"
+              className="text-xl font-bold text-gray-800 tracking-wide w-40 brightness-10"
+              src="/images/logo.svg"
+              alt="Yogshala Logo"
+          
             >
-              Yogshala.ai
-            </motion.span>
+            
+            </motion.img>
           )}
 
           <button

@@ -12,6 +12,7 @@ const Trainers = () => {
   const [trainersList, setTrainersList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+ const  navigateApiForntend= import.meta.env.VITE_FRONTEND_URL;
 
   const trainersData = async()=>{
    const activeTrainers =await getActiveTrainers();
@@ -115,7 +116,7 @@ const filteredTrainers = trainersList
                 <p className="text-muted mt-1 text-sm">{trainer.location}</p>
 
                 <Link
-                  to={`/trainers/profile/${trainer.id}`}
+                  to={`${navigateApiForntend}/trainers/profile/${trainer.id}`}
                   className="mt-5 inline-block w-full text-center btn btn-primary text-white font-semibold py-2 rounded-lg hover:bg-dark transition-all duration-200"
                 >
                   View Profile
