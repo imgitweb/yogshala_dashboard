@@ -31,8 +31,7 @@ export const getCurrentUser = async () => {
 export const getActiveTrainers = async () => {
   try {
     const response = await axiosInstance.get("/auth/active-trainers");
-    console.log("Active trainers response:", response.data);
-    return response.data.data;
+    return response;
   } catch (error) {
     console.error("Failed to fetch active trainers:", error.response?.data || error.message);
     throw error.response?.data || error;
