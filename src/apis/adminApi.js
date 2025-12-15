@@ -404,3 +404,38 @@ export const renewMemberSubscriptionApi = async (batchMemberId) => {
     throw err.response?.data || err;
   }
 }
+
+
+
+
+export const getAllEnquiries = async () => {
+  try {
+    const response = await axiosInstance.get("/enquiry");
+    return response.data; 
+  } catch (err) {
+    console.error("Failed to fetch members list:", err.response?.data || err.message);
+    throw err.response?.data || err;
+  }
+}
+
+export const getEnquiryByIdApi = async (enquiryId) => {
+  try {
+    const response = await axiosInstance.get(`/enquiry/${enquiryId}`);
+    return response.data; 
+  } catch (err) {
+    console.error("Failed to fetch enquiry details:", err.response?.data || err.message);
+    throw err.response?.data || err;
+  }
+}
+
+
+
+export const deleteEnquiryApi = async (enquiryId) => {
+  try {
+    const response = await axiosInstance.delete(`/enquiry/${enquiryId}`);
+    return response.data; 
+  } catch (err) {
+    console.error("Failed to delete enquiry:", err.response?.data || err.message);
+    throw err.response?.data || err;
+  }
+}

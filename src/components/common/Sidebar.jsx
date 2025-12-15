@@ -118,6 +118,13 @@ const sidebarLinks = {
       ],
     },
     {
+      label: "Enquiries",
+      icon: <Users size={20} />,
+      children: [
+        { label: "All Enquiries", path: "/admin/enquiries" },
+      ],
+    },
+    {
       label: "Invoices",
       icon: <Wallet size={20} />,
       children: [

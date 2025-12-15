@@ -17,6 +17,8 @@ import MemberViewAdminPage from "../../pages/Dashboard/Admins/MemberViewAdminPag
 import MemberEditAdminPage from "../../pages/Dashboard/Admins/MemberEditAdminPage";
 import BatchMembersListAdminPage from "../../pages/Dashboard/Admins/BatchMembersListAdminPage";
 import InvoiceListAdminPage from "../../pages/Dashboard/Admins/InvoiceListAdminPage";
+import AllEnquiriesList from "../../pages/Dashboard/Admins/AllEnquiriesList";
+import EnquiryViewAdminPage from "../../pages/Dashboard/Admins/EnquiryViewAdminPage";
 // Lazy load admin pages
 const AdminDashboard = lazy(() => import("../../pages/Dashboard/Admins/AdminDashboard"));
 
@@ -77,6 +79,10 @@ const AdminRoutes = () => {
 
          <Route path="members/view/:memberId" element={<MemberViewAdminPage />} />
          <Route path="members/edit/:memberId" element={<MemberEditAdminPage />} />
+
+ <Route path="enquiries" element={<AllEnquiriesList />} />
+     <Route path="enquiries/view/:enquiryId" element={<EnquiryViewAdminPage />} />
+
 
 <Route  path="invoice/list"  element = {<InvoiceListAdminPage/>}/>
 

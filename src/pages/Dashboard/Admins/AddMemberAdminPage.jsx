@@ -27,6 +27,8 @@ const AddMemberAdminPage = () => {
 
     // Additional info
     occupation: "",
+    joinedDate: "",   // ✅ FIXED
+
 
     // Health
     height: "",
@@ -134,6 +136,12 @@ const AddMemberAdminPage = () => {
       return false;
     }
 
+    if (!formData.joinedDate) {
+  showError("Please select joined date");
+  scrollToField("joinedDate");
+  return false;
+}
+
     // Gender required
     if (!formData.gender) {
       showError("Please select gender");
@@ -185,6 +193,7 @@ const AddMemberAdminPage = () => {
         age: Number(formData.age),
         role: formData.role,
         occupation: formData.occupation,
+        joinedDate: formData.joinedDate,
         profilePicture: formData.profilePicture,
 
         health: {
@@ -215,7 +224,7 @@ const AddMemberAdminPage = () => {
 
       const res = await createMemberApi(payload);
       showSuccess(res.message || "Member created successfully!");
-        setFormData({
+      setFormData({
         fullName: "",
         email: "",
         phone: "",
@@ -227,6 +236,7 @@ const AddMemberAdminPage = () => {
 
         // Additional info
         occupation: "",
+        joinedDate: "",
 
         // Health
         height: "",
@@ -291,7 +301,9 @@ const AddMemberAdminPage = () => {
                 value={formData.email}
                 onChange={(e) => handleInput("email", e.target.value)}
               />
+
             </InputRow>
+
 
             <InputRow>
               <InputField
@@ -312,6 +324,18 @@ const AddMemberAdminPage = () => {
                 onChange={(e) => handleInput("password", e.target.value)}
               />
             </InputRow>
+            <InputRow>
+              <div className="w-full" id="joinedDate">
+                <InputField
+                required
+                  label="Joined Date"
+                  type="date"
+                  value={formData.joinedDate}
+                  onChange={(e) => handleInput("joinedDate", e.target.value)}
+                />
+              </div>
+            </InputRow>
+
           </div>
 
           {/* -------- HEALTH INFO -------- */}
@@ -323,6 +347,7 @@ const AddMemberAdminPage = () => {
             <InputRow columns={3}>
               <div className="w-full" id="height">
                 <InputField
+
                   label="Height (cm)"
                   type="number"
                   placeholder="170"
@@ -449,11 +474,10 @@ const AddMemberAdminPage = () => {
                   {genderOptions.map((g) => (
                     <label
                       key={g}
-                      className={`px-4 py-3 rounded-xl border cursor-pointer text-sm font-500 ${
-                        formData.gender === g
+                      className={`px-4 py-3 rounded-xl border cursor-pointer text-sm font-500 ${formData.gender === g
                           ? "bg-primary text-white"
                           : "bg-offwhite text-dark"
-                      }`}
+                        }`}
                     >
                       <input
                         type="radio"
@@ -582,9 +606,8 @@ const AddMemberAdminPage = () => {
             <button
               onClick={handleSubmit}
               disabled={saving}
-              className={`btn btn-primary flex items-center gap-2 ${
-                saving ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`btn btn-primary flex items-center gap-2 ${saving ? "opacity-50 cursor-not-allowed" : ""
+                }`}
             >
               {saving ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

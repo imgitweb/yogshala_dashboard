@@ -38,6 +38,7 @@ const MembersListAdminPage = () => {
           gender: m.gender || "-",
           age: m.age || "-",
           status: m.status || "Pending",
+          joinedDate: m.joinedDate,
         }))
       );
     } catch (err) {
@@ -77,6 +78,10 @@ const MembersListAdminPage = () => {
     { key: "name", label: "Full Name" },
 
     { key: "email", label: "Email" },
+    {
+      key: "joinedDate", label: "Joined On",
+      render: (row) => new Date(row.joinedDate).toLocaleDateString(),
+    },
 
     { key: "phone", label: "Phone" },
 

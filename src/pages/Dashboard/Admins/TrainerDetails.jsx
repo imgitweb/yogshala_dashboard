@@ -46,25 +46,15 @@ const TrainerDetailsPage = () => {
   /* -------------------------------------
          Approve / Reject
   ------------------------------------- */
-  const handleApprove = async () => {
-    try {
-      await UpdateTrainerStatus(trainerId, { status: "Approved" });
-      setTrainer((p) => ({ ...p, status: "Approved" }));
-      showSuccess("Trainer approved");
-    } catch (err) {
-      showError("Failed to approve trainer");
-    }
-  };
-
-  const handleReject = async () => {
-    try {
-      await UpdateTrainerStatus(trainerId, { status: "Rejected" });
-      setTrainer((p) => ({ ...p, status: "Rejected" }));
-      showSuccess("Trainer rejected");
-    } catch (err) {
-      showError("Failed to reject trainer");
-    }
-  };
+const updateTrainerStatus = async (newStatus) => {
+  try {
+    await UpdateTrainerStatus(trainerId, { status: newStatus });
+    setTrainer((prev) => ({ ...prev, status: newStatus }));
+    showSuccess(`Trainer marked as ${newStatus}`);
+  } catch (err) {
+    showError("Failed to update trainer status");
+  }
+};
 
   if (loading || !trainer) {
     return <p className="p-10 text-center text-lg">Loading...</p>;
@@ -117,21 +107,47 @@ const TrainerDetailsPage = () => {
             </div>
           </div>
 
-          <div className="flex gap-3 h-fit">
-            <button
-              className="btn btn-primary flex items-center gap-2"
-              onClick={handleApprove}
-            >
-              <Check size={18} /> Approve
-            </button>
+       <div className="flex gap-3 h-fit">
+  {/* PENDING → Approve / Reject */}
+  {trainer.status === "Pending" && (
+    <>
+      <button
+        className="btn btn-primary flex items-center gap-2"
+        onClick={() => updateTrainerStatus("Approved")}
+      >
+        <Check size={18} /> Approve
+      </button>
 
-            <button
-              className="btn btn-outline flex items-center gap-2 text-red"
-              onClick={handleReject}
-            >
-              <X size={18} /> Reject
-            </button>
-          </div>
+      <button
+        className="btn btn-outline flex items-center gap-2 text-red"
+        onClick={() => updateTrainerStatus("Rejected")}
+      >
+        <X size={18} /> Reject
+      </button>
+    </>
+  )}
+
+  {/* APPROVED → Mark Pending */}
+  {trainer.status === "Approved" && (
+    <button
+      className="btn btn-outline flex items-center gap-2"
+      onClick={() => updateTrainerStatus("Pending")}
+    >
+      <User size={18} /> Mark as Pending
+    </button>
+  )}
+
+  {/* OPTIONAL: REJECTED → Mark Pending */}
+  {trainer.status === "Rejected" && (
+    <button
+      className="btn btn-outline flex items-center gap-2"
+      onClick={() => updateTrainerStatus("Pending")}
+    >
+      <User size={18} /> Mark as Pending
+    </button>
+  )}
+</div>
+
         </div>
 
         {/* -------------------------------------
