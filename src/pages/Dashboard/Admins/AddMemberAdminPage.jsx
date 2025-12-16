@@ -100,17 +100,21 @@ const AddMemberAdminPage = () => {
       return false;
     }
 
-    // Email required + format
-    if (!formData.email || formData.email.trim() === "") {
-      showError("Email is required");
-      scrollToField("email");
-      return false;
-    }
-    if (!emailRegex.test(formData.email.trim())) {
-      showError("Please enter a valid email (e.g. user@example.com)");
-      scrollToField("email");
-      return false;
-    }
+
+ // Email OPTIONAL but must be valid if provided
+if (formData.email && !emailRegex.test(formData.email.trim())) {
+  showError("Please enter a valid email (e.g. user@example.com)");
+  scrollToField("email");
+  return false;
+}
+
+// Password OPTIONAL but must be min 6 chars if provided
+if (formData.password && formData.password.trim().length < 6) {
+  showError("Password must be at least 6 characters");
+  scrollToField("password");
+  return false;
+}
+
 
     // Phone required + 10 digits
     if (!formData.phone || formData.phone.trim() === "") {
@@ -124,12 +128,7 @@ const AddMemberAdminPage = () => {
       return false;
     }
 
-    // Password required + min length
-    if (!formData.password || formData.password.trim() === "") {
-      showError("Password is required");
-      scrollToField("password");
-      return false;
-    }
+   
     if (formData.password.trim().length < 6) {
       showError("Password must be at least 6 characters");
       scrollToField("password");
@@ -186,15 +185,22 @@ const AddMemberAdminPage = () => {
 
       const payload = {
         fullName: formData.fullName.trim(),
-        email: formData.email.trim().toLowerCase(),
         phone: formData.phone.trim(),
-        password: formData.password,
         gender: formData.gender,
         age: Number(formData.age),
         role: formData.role,
         occupation: formData.occupation,
         joinedDate: formData.joinedDate,
         profilePicture: formData.profilePicture,
+
+  ...(formData.email && {
+    email: formData.email.trim().toLowerCase(),
+  }),
+
+  ...(formData.password && {
+    password: formData.password,
+  }),
+
 
         health: {
           height: formData.height ? Number(formData.height) : null,
@@ -293,20 +299,21 @@ const AddMemberAdminPage = () => {
                 onChange={(e) => handleInput("fullName", e.target.value)}
               />
 
-              <InputField
-                id="email"
-                label="Email"
-                required
-                placeholder="example@gmail.com"
-                value={formData.email}
-                onChange={(e) => handleInput("email", e.target.value)}
-              />
+            <InputField
+  id="email"
+  label="Email"
+  placeholder="example@gmail.com"
+  value={formData.email}
+  onChange={(e) => handleInput("email", e.target.value)}
+/>
+
 
             </InputRow>
 
 
             <InputRow>
               <InputField
+              required
                 id="phone"
                 label="Phone"
                 placeholder="9876543210"
@@ -314,15 +321,15 @@ const AddMemberAdminPage = () => {
                 onChange={(e) => handleInput("phone", e.target.value)}
               />
 
-              <InputField
-                id="password"
-                label="Password"
-                type="password"
-                required
-                placeholder="Enter password"
-                value={formData.password}
-                onChange={(e) => handleInput("password", e.target.value)}
-              />
+         <InputField
+  id="password"
+  label="Password"
+  type="password"
+  placeholder="Enter password"
+  value={formData.password}
+  onChange={(e) => handleInput("password", e.target.value)}
+/>
+
             </InputRow>
             <InputRow>
               <div className="w-full" id="joinedDate">
