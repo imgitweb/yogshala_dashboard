@@ -128,14 +128,7 @@ if (formData.password && formData.password.trim().length < 6) {
       return false;
     }
 
-   
-    if (formData.password.trim().length < 6) {
-      showError("Password must be at least 6 characters");
-      scrollToField("password");
-      return false;
-    }
-
-    if (!formData.joinedDate) {
+if (!formData.joinedDate) {
   showError("Please select joined date");
   scrollToField("joinedDate");
   return false;
