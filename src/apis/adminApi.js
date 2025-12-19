@@ -439,3 +439,34 @@ export const deleteEnquiryApi = async (enquiryId) => {
     throw err.response?.data || err;
   }
 }
+
+export const addBulkFaqApi = async (faqData) => {
+  try {
+    const response = await axiosInstance.post("/faqs/bulk-add", faqData);
+    return response.data; 
+  } catch (err) {
+    console.error("Failed to add FAQs:", err.response?.data || err.message);
+    throw err.response?.data || err;
+  }
+}
+
+export const getAllFaqsApi = async () => {
+  try {
+    const response = await axiosInstance.get("/faqs/all" , { cratedAt: -1 });
+  
+    return response.data; 
+  } catch (err) {
+    console.error("Failed to fetch FAQs list:", err.response?.data || err.message);
+    throw err.response?.data || err;
+  }
+}
+
+export const deleteFaqApi = async (faqId) => {
+  try {
+    const response = await axiosInstance.delete(`/faqs/delete/${faqId}`);
+    return response.data; 
+  } catch (err) {
+    console.error("Failed to delete FAQ:", err.response?.data || err.message);
+    throw err.response?.data || err;
+  }
+}

@@ -19,6 +19,8 @@ import BatchMembersListAdminPage from "../../pages/Dashboard/Admins/BatchMembers
 import InvoiceListAdminPage from "../../pages/Dashboard/Admins/InvoiceListAdminPage";
 import AllEnquiriesList from "../../pages/Dashboard/Admins/AllEnquiriesList";
 import EnquiryViewAdminPage from "../../pages/Dashboard/Admins/EnquiryViewAdminPage";
+import AddFaqforBot from "../../pages/Dashboard/Admins/AddFaqforBot";
+import FaqListAdminPage from "../../pages/Dashboard/Admins/FaqListAdminPage";
 // Lazy load admin pages
 const AdminDashboard = lazy(() => import("../../pages/Dashboard/Admins/AdminDashboard"));
 
@@ -85,6 +87,10 @@ const AdminRoutes = () => {
 
 
 <Route  path="invoice/list"  element = {<InvoiceListAdminPage/>}/>
+<Route  path="add-faq"  element = {<AddFaqforBot/>}/>
+<Route path="faq-list" element={<FaqListAdminPage/>} />
+
+
 
 
 

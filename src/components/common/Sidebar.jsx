@@ -132,6 +132,15 @@ const sidebarLinks = {
         
       ],
     },
+    // {
+    //   label: "FAQs",
+    //   icon: <UserCircle size={20} />,
+    //   children: [
+    //     { label: "Add FAQs for Bot", path: "/admin/add-faq" },
+    //     { label: "FAQ List", path: "/admin/faq-list" }
+        
+    //   ],
+    // },
   ],
 };
 
